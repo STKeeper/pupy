@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import site
 import sys
 import os
@@ -18,8 +19,8 @@ import additional_imports
 THIS = os.path.abspath(__file__)
 ROOT = os.path.dirname(os.path.dirname(THIS))
 
-print "THIS:", THIS
-print "ROOT: ", ROOT
+print("THIS:", THIS)
+print("ROOT: ", ROOT)
 
 PATCHES = os.path.join(ROOT, 'pupy', 'library_patches')
 
@@ -56,7 +57,7 @@ def compile_py(path):
     compile_map.append(path)
 
     data = pupycompile(path, 'f:{:x}'.format(fileid), path=True)
-    print "[C] {} -> f:{:x}".format(path, fileid)
+    print("[C] {} -> f:{:x}".format(path, fileid))
 
     return data
 
@@ -119,7 +120,7 @@ for dep in ('cffi', 'pycparser', 'pyaes'):
     if dep in all_dependencies:
         all_dependencies.remove(dep)
 
-print "ALLDEPS: ", all_dependencies
+print("ALLDEPS: ", all_dependencies)
 
 
 zf = zipfile.ZipFile(sys.argv[1], mode='w', compression=zipfile.ZIP_DEFLATED)
@@ -135,7 +136,7 @@ try:
     for dep in all_dependencies:
         _, mpath, info = imp.find_module(dep)
 
-        print "DEPENDENCY: ", dep, mpath
+        print("DEPENDENCY: ", dep, mpath)
         if info[2] == imp.PKG_DIRECTORY:
             print('adding package %s / %s' % (dep, mpath))
             path, root = os.path.split(mpath)
