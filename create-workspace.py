@@ -5,6 +5,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+from __future__ import print_function
 import argparse
 import subprocess
 import os
@@ -295,6 +296,7 @@ def build_templates(
     return update_commands
 
 
+<<<<<<< HEAD
 def fetch_templates(workdir, git_folder):
     origin = get_repo_origin(git_folder)
 
@@ -308,9 +310,19 @@ def fetch_templates(workdir, git_folder):
 
     download_link = "https://github.com/n1nj4sec/pupy" \
         "/releases/download/latest/payload_templates.txz"
+=======
+    print("[+] Pupy at {}".format(pupy))
+
+    if not args.do_not_compile_templates:
+        print("[+] Compile common templates")
+        env = os.environ.copy()
+        if args.docker_repo:
+            env['REPO'] = args.docker_repo
+>>>>>>> 920bfac29fbc1d43ef547961568cf85a75bb8bd4
 
     print("downloading payload_templates from {}".format(download_link))
 
+<<<<<<< HEAD
     with tempfile.NamedTemporaryFile() as tmpf:
         response = urlopen(download_link)
         while True:
@@ -318,6 +330,9 @@ def fetch_templates(workdir, git_folder):
             if not chunk:
                 break
             tmpf.write(chunk)
+=======
+    print("[+] Create VirtualEnv environment")
+>>>>>>> 920bfac29fbc1d43ef547961568cf85a75bb8bd4
 
         tmpf.flush()
         tmpf.seek(0)
@@ -333,7 +348,11 @@ def make_pupysh_wrapper(workdir, git_folder, orchestrator):
 
 def makedirs_p(dirpath):
     try:
+<<<<<<< HEAD
         os.makedirs(dirpath)
+=======
+        os.makedirs(args.workdir)
+>>>>>>> 920bfac29fbc1d43ef547961568cf85a75bb8bd4
     except OSError as e:
         if e.errno == errno.EEXIST:
             pass

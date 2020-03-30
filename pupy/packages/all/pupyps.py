@@ -17,6 +17,8 @@ import threading
 
 from io import open
 
+from io import open
+
 families = {
     v:k[3:] for k,v in socket.__dict__.iteritems() if k.startswith('AF_')
 }
@@ -88,6 +90,7 @@ def make_known_fields():
 
 
 KNOWN_FIELDS, UNSUPPORTED_FIELDS = make_known_fields()
+
 
 
 
